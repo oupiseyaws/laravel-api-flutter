@@ -1,0 +1,76 @@
+=====================Product=====================
+curl --location 'http://localhost:8000/api/products' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request POST \
+--data '{
+    "name": "value",
+    "detail": "value"
+}'
+
+curl --location 'http://localhost:8000/api/products/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request PATCH \
+--data '{
+    "name": "value",
+    "detail": "value"
+}'
+
+curl --location 'http://localhost:8000/api/products/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request DELETE
+
+curl --location 'http://localhost:8000/api/products' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request GET
+
+curl --location 'http://localhost:8000/api/products/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request GET
+
+=====================Product=====================
+=====================User=====================
+curl --location 'http://localhost:8000/api/users' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request POST \
+--data '{
+    "name": "value",
+    "email": "value",
+    "email_verified_at": "value",
+    "password": "value",
+    "remember_token": "value"
+}'
+
+curl --location 'http://localhost:8000/api/users/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request PATCH \
+--data '{
+    "name": "value",
+    "email": "value",
+    "email_verified_at": "value",
+    "password": "value",
+    "remember_token": "value"
+}'
+
+curl --location 'http://localhost:8000/api/users/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request DELETE
+
+curl --location 'http://localhost:8000/api/users' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request GET
+
+curl --location 'http://localhost:8000/api/users/:id' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--request GET
+
+=====================User=====================
