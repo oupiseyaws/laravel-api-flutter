@@ -7,9 +7,10 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * @var UserService
@@ -27,9 +28,13 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): UserResource|\Illuminate\Http\JsonResponse
     {
-        return UserResource::collection($this->userService->getAll($request));
+        $data = Cache::rememberForever('users', function () use ($request) {
+            return $this->userService->getAll($request);
+        });
+
+        return $this->sendResponse($data,UserResource::collection($data));
     }
 
     public function store(UserRequest $request): UserResource|\Illuminate\Http\JsonResponse

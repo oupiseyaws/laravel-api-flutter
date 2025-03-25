@@ -1,53 +1,53 @@
 <?php
 namespace App\Services;
 
-use App\Models\Product;
-use App\Repositories\ProductRepository;
+use App\Models\Category;
+use App\Repositories\CategoryRepository;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
+use Illuminate\Http\Request;
 
-class ProductService
+class CategoryService
 {
 	/**
-     * @var ProductRepository $productRepository
+     * @var CategoryRepository $categoryRepository
      */
-    protected $productRepository;
+    protected $categoryRepository;
 
     /**
      * DummyClass constructor.
      *
-     * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
-     * Get all productRepository.
+     * Get all categoryRepository.
      *
      * @return String
      */
     public function getAll(Request $request)
     {
-        return $this->productRepository->all($request);
+        return $this->categoryRepository->all($request);
     }
 
     /**
-     * Get productRepository by id.
+     * Get categoryRepository by id.
      *
      * @param $id
      * @return String
      */
     public function getById(int $id)
     {
-        return $this->productRepository->getById($id);
+        return $this->categoryRepository->getById($id);
     }
 
     /**
-     * Validate productRepository data.
+     * Validate categoryRepository data.
      * Store to DB if there are no errors.
      *
      * @param array $data
@@ -55,11 +55,11 @@ class ProductService
      */
     public function save(array $data)
     {
-        return $this->productRepository->save($data);
+        return $this->categoryRepository->save($data);
     }
 
     /**
-     * Update productRepository data
+     * Update categoryRepository data
      * Store to DB if there are no errors.
      *
      * @param array $data
@@ -69,9 +69,9 @@ class ProductService
     {
         DB::beginTransaction();
         try {
-            $productRepository = $this->productRepository->update($data, $id);
+            $categoryRepository = $this->categoryRepository->update($data, $id);
             DB::commit();
-            return $productRepository;
+            return $categoryRepository;
         } catch (Exception $e) {
             DB::rollBack();
             report($e);
@@ -80,7 +80,7 @@ class ProductService
     }
 
     /**
-     * Delete productRepository by id.
+     * Delete categoryRepository by id.
      *
      * @param $id
      * @return String
@@ -89,9 +89,9 @@ class ProductService
     {
         DB::beginTransaction();
         try {
-            $productRepository = $this->productRepository->delete($id);
+            $categoryRepository = $this->categoryRepository->delete($id);
             DB::commit();
-            return $productRepository;
+            return $categoryRepository;
         } catch (Exception $e) {
             DB::rollBack();
             report($e);

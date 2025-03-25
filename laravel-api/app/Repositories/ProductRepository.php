@@ -2,10 +2,12 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductRepository
 {
-	 /**
+    /**
      * @var Product
      */
     protected Product $product;
@@ -18,6 +20,7 @@ class ProductRepository
     public function __construct(Product $product)
     {
         $this->product = $product;
+
     }
 
     /**
@@ -25,9 +28,20 @@ class ProductRepository
      *
      * @return Product $product
      */
-    public function all()
+    public function all(Request $request)
     {
-        return $this->product->get();
+        $display = $request->get('display');
+
+        $data =  QueryBuilder::for(Product::class)
+        ->allowedFilters('name')
+        ->defaultSort('-created_at');
+
+        if($display){
+            return $data->paginate($display)
+            ->appends(request()->query());
+        }
+
+        return $data->get();
     }
 
      /**

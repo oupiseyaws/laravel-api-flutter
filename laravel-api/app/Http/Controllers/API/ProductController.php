@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * @var ProductService
@@ -27,9 +30,14 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): ProductResource|\Illuminate\Http\JsonResponse
     {
-        return ProductResource::collection($this->productService->getAll());
+
+        $data = Cache::rememberForever('products', function () use ($request) {
+            return $this->productService->getAll($request);
+        });
+
+        return $this->sendResponse($data,ProductResource::collection($data));
     }
 
     public function store(ProductRequest $request): ProductResource|\Illuminate\Http\JsonResponse

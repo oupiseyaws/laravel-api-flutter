@@ -6,7 +6,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class UserRepository
 {
-	 /**
+    /**
      * @var User
      */
     protected User $user;
@@ -28,7 +28,6 @@ class UserRepository
      */
     public function all(Request $request)
     {
-        // get limit_page
         $display = $request->get('display');
 
         $data =  QueryBuilder::for(User::class)
@@ -43,7 +42,7 @@ class UserRepository
         return $data->get();
     }
 
-     /**
+    /**
      * Get user by id
      *
      * @param $id

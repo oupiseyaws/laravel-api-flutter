@@ -1,53 +1,53 @@
 <?php
 namespace App\Services;
 
-use App\Models\Product;
-use App\Repositories\ProductRepository;
+use App\Models\Transaction;
+use App\Repositories\TransactionRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 
-class ProductService
+class TransactionService
 {
 	/**
-     * @var ProductRepository $productRepository
+     * @var TransactionRepository $transactionRepository
      */
-    protected $productRepository;
+    protected $transactionRepository;
 
     /**
      * DummyClass constructor.
      *
-     * @param ProductRepository $productRepository
+     * @param TransactionRepository $transactionRepository
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(TransactionRepository $transactionRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->transactionRepository = $transactionRepository;
     }
 
     /**
-     * Get all productRepository.
+     * Get all transactionRepository.
      *
      * @return String
      */
     public function getAll(Request $request)
     {
-        return $this->productRepository->all($request);
+        return $this->transactionRepository->all($request);
     }
 
     /**
-     * Get productRepository by id.
+     * Get transactionRepository by id.
      *
      * @param $id
      * @return String
      */
     public function getById(int $id)
     {
-        return $this->productRepository->getById($id);
+        return $this->transactionRepository->getById($id);
     }
 
     /**
-     * Validate productRepository data.
+     * Validate transactionRepository data.
      * Store to DB if there are no errors.
      *
      * @param array $data
@@ -55,11 +55,11 @@ class ProductService
      */
     public function save(array $data)
     {
-        return $this->productRepository->save($data);
+        return $this->transactionRepository->save($data);
     }
 
     /**
-     * Update productRepository data
+     * Update transactionRepository data
      * Store to DB if there are no errors.
      *
      * @param array $data
@@ -69,9 +69,9 @@ class ProductService
     {
         DB::beginTransaction();
         try {
-            $productRepository = $this->productRepository->update($data, $id);
+            $transactionRepository = $this->transactionRepository->update($data, $id);
             DB::commit();
-            return $productRepository;
+            return $transactionRepository;
         } catch (Exception $e) {
             DB::rollBack();
             report($e);
@@ -80,7 +80,7 @@ class ProductService
     }
 
     /**
-     * Delete productRepository by id.
+     * Delete transactionRepository by id.
      *
      * @param $id
      * @return String
@@ -89,9 +89,9 @@ class ProductService
     {
         DB::beginTransaction();
         try {
-            $productRepository = $this->productRepository->delete($id);
+            $transactionRepository = $this->transactionRepository->delete($id);
             DB::commit();
-            return $productRepository;
+            return $transactionRepository;
         } catch (Exception $e) {
             DB::rollBack();
             report($e);

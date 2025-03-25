@@ -6,16 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class Category extends Model
+class Transaction extends Model
 {
-    /** @use HasFactory<\Database\Factories\CategoryFactory> */
+    /** @use HasFactory<\Database\Factories\TransactionFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'name','user_id'
+        'user_id','category_id', 'transaction_date','amount','description'
     ];
 
-    // add global scope for user
+    protected $dates = ['transaction_date'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     protected static function booted(){
         if(auth()->check()){

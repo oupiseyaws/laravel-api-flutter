@@ -32,7 +32,7 @@ class AuthController extends BaseController
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendAResponse($success, 'User register successfully.');
     }
 
     public function login(Request $request): JsonResponse
@@ -42,7 +42,7 @@ class AuthController extends BaseController
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
 
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendAResponse($success, 'User login successfully.');
         }
         else{
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
