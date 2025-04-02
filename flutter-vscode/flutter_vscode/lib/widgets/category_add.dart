@@ -70,7 +70,7 @@ class CategoryAddState extends State<CategoryAdd> {
                       saveCategory(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.purple,
+                      primary: Colors.red,
                       onPrimary: Colors.white,
                     ),
                     child: Text('Create'),
