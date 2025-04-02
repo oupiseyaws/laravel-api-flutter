@@ -6,13 +6,15 @@ import '/screens/categories/categories_list.dart';
 import '/screens/transactions/list.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   int selectedIndex = 0;
-  List<Widget> widgetOptions = [Transactions(), CategoriesList()];
+  List<Widget> widgetOptions = [const Transactions(), const CategoriesList()];
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,12 @@ class _HomeState extends State<Home> {
       home: Scaffold(
         body: widgetOptions.elementAt(selectedIndex),
         bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 4,
           child: BottomNavigationBar(
             backgroundColor: Theme.of(context).primaryColor.withAlpha(0),
             elevation: 0,
-            items: <BottomNavigationBarItem>[
+            items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   icon: Icon(Icons.account_balance_wallet),
                   label: 'Transactions'),

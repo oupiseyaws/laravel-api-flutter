@@ -9,7 +9,7 @@ import 'screens/categories/categories_list.dart';
 import 'screens/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,12 +28,14 @@ class MyApp extends StatelessWidget {
               child: MaterialApp(title: 'Welcome to Flutter', routes: {
                 '/': (context) {
                   final authProvider = Provider.of<AuthProvider>(context);
-                  return authProvider.isAuthenticated ? Home() : Login();
+                  return authProvider.isAuthenticated
+                      ? const Home()
+                      : const Login();
                 },
-                '/login': (context) => Login(),
-                '/register': (context) => Register(),
-                '/home': (context) => Home(),
-                '/categories': (context) => CategoriesList(),
+                '/login': (context) => const Login(),
+                '/register': (context) => const Register(),
+                '/home': (context) => const Home(),
+                '/categories': (context) => const CategoriesList(),
               }));
         }));
   }

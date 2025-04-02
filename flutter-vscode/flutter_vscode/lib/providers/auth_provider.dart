@@ -10,15 +10,15 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider();
 
   Future<void> register(String name, String email, String password,
-      String password_confirmation, String device_name) async {
+      String passwordConfirmation, String deviceName) async {
     token = await apiService.register(
-        name, email, password, password_confirmation, device_name);
+        name, email, password, passwordConfirmation, deviceName);
     isAuthenticated = true;
     notifyListeners();
   }
 
-  Future<void> login(String email, String password, String device_name) async {
-    token = await apiService.login(email, password, device_name);
+  Future<void> login(String email, String password, String deviceName) async {
+    token = await apiService.login(email, password, deviceName);
     isAuthenticated = true;
     notifyListeners();
   }

@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use Spatie\LaravelData\Data;
+{{ namespaces }}
+
+class {{ class }} extends Data
+{
+{{ data }}
+}

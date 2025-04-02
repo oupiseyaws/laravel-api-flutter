@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Transactions extends StatefulWidget {
+  const Transactions({super.key});
+
   @override
   _TransactionsState createState() => _TransactionsState();
 }
@@ -12,9 +14,9 @@ class _TransactionsState extends State<Transactions> {
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Transactions'),
+          title: const Text('Transactions'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Coming soon',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
         ),

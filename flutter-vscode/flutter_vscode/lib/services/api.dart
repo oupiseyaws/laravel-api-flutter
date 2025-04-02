@@ -90,7 +90,7 @@ class ApiService {
   }
 
   Future<String> register(String name, String email, String password,
-      String password_confirm, String device_name) async {
+      String passwordConfirm, String deviceName) async {
     String url = '$baseUrl/api/auth/register';
     final http.Response response = await http.post(
       Uri.parse(url),
@@ -102,8 +102,8 @@ class ApiService {
         'name': name,
         'email': email,
         'password': password,
-        'password_confirmation': password_confirm,
-        'device_name': device_name,
+        'password_confirmation': passwordConfirm,
+        'device_name': deviceName,
       }),
     );
 
@@ -123,8 +123,7 @@ class ApiService {
     return response.body;
   }
 
-  Future<String> login(
-      String email, String password, String device_name) async {
+  Future<String> login(String email, String password, String deviceName) async {
     String url = '$baseUrl/api/auth/login';
     final http.Response response = await http.post(
       Uri.parse(url),
@@ -135,7 +134,7 @@ class ApiService {
       body: jsonEncode(<String, String>{
         'email': email,
         'password': password,
-        'device_name': device_name,
+        'device_name': deviceName,
       }),
     );
 
